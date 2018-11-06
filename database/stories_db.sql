@@ -1,5 +1,6 @@
 CREATE TABLE users (
-    username VARCHAR PRIMARY KEY,
+    id_user INTEGER PRIMARY KEY AUTOINCREMENT,
+    username VARCHAR NOT NULL,
     password VARCHAR NOT NULL
 );
 CREATE TABLE stories (
@@ -21,15 +22,15 @@ CREATE TABLE comments (
     PRIMARY KEY(id_comment, id_story)
 );
 
-INSERT INTO users VALUES(
+INSERT INTO users (username, password) VALUES(
     'Ben1',
     '123'
 );
-INSERT INTO users VALUES(
+INSERT INTO users (username, password) VALUES(
     'Ben2',
     '234'
 );
-INSERT INTO users VALUES(
+INSERT INTO users (username, password) VALUES(
     'Ben3',
     '345'
 );
