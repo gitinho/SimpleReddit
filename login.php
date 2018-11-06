@@ -1,5 +1,4 @@
-
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -16,8 +15,8 @@
       <input type="password" placeholder="password" name="password">
       <div>
         <input type="submit" value="Login">
-        <a href="register.php">Register</a>
       </div>
+      <a href="register.php">Register</a>
     </form>
 
 </body>

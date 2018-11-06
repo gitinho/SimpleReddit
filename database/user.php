@@ -1,8 +1,23 @@
 <?php
     function isLoginCorrect($username, $password) {
         global $dbh;
-        $stmt = $dbh->prepare('SELECT * FROM user WHERE usr_username = ? AND usr_password = ?');
-        $stmt->execute(array($username, sha1($password))); 
+        $stmt = $dbh->prepare('SELECT * FROM users WHERE username = ? AND password = ?');
+        $stmt->execute(array($username, $password)); 
+        return $stmt->fetch() !== false;
+    }
+
+    function isUserAlreadyInDB($username) {
+        global $dbh;
+        $stmt = $dbh->prepare("SELECT *
+                               FROM users WHERE username = ?");
+        $stmt->execute();
+        return $stmt->fetch() !== false;
+    }
+
+    function addNewUser($username, $password) {
+        global $dbh;
+        $stmt = $dbh->prepare("INSERT INTO users VALUES (?, ?);");
+        $stmt->execute();
         return $stmt->fetch() !== false;
     }
 

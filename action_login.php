@@ -7,6 +7,7 @@ include_once('database/user.php');
     echo "<script type='text/javascript'>alert('Done it!');</script>";
     //$_SESSION['success_messages'][] = "Login Successful!";
   } else {
+    echo "<script type='text/javascript'>alert('Something goes wrong!');</script>";
     //$_SESSION['error_messages'][] = "Login Failed!";
   }
 
