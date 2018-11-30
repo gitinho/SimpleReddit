@@ -12,11 +12,10 @@
     function getAllCommentsByIdStory($id_story) {
         global $dbh;
         $stmt = $dbh->prepare("SELECT *
-                               FROM comments JOIN
-                                    stories USING (id_story)
+                               FROM comments 
                                WHERE id_story = ?");
-        $stmt->execute(array($id));
-        return $stmt->fetch();
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
     function getCommentById($id_story, $id_comment) {
