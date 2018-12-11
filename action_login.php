@@ -1,9 +1,6 @@
 <?php
 include_once('includes/init.php');
 include_once('database/user.php');
-hash_password('Ben1', '123');
-hash_password('Ben2', '234');
-hash_password('Ben3', '345');
 
   if (isLoginCorrect($_POST['username'], md5($_POST['password']))) {
     //setCurrentUser($_POST['username']);
@@ -16,9 +13,6 @@ hash_password('Ben3', '345');
   } else {
     echo "<script type='text/javascript'>alert('Something goes wrong!');</script>";
     //$_SESSION['error_messages'][] = "Login Failed!";
-
-    $_SESSION["logged_in"] = false;
-    $_SESSION["username"] = "";
   }
 
   //header('Location: ' . $_SERVER['HTTP_REFERER']);

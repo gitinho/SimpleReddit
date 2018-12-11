@@ -22,6 +22,7 @@
     <?php
         if ($_SESSION["logged_in"]) {
             echo $_SESSION["username"];
+            echo '<a href="action_logout.php">Log Out</a>';
         } else {
             echo $_SESSION["logged_in"];
             echo '<a href="login.php">Log In</a>';

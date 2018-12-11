@@ -43,7 +43,7 @@
          <form>
             <h2>Add a comment</h2>
             <label>Username
-                <input type="text" name="username">
+                <?php echo $_SESSION["username"]; ?>
             </label>
             <label>Comment
                 <textarea name="text"></textarea>
