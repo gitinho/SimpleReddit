@@ -29,4 +29,10 @@
         return $stmt->fetch();
     }
 
+    function insertComment($id_comment, $id_story, $username, $date, $text) {
+        global $dbh;
+        $stmt = $dbh->prepare("INSERT INTO comments VALUES (?,?,?,?,?,?);");
+        $stmt->execute(array($id_comment, $id_story, $username, $date, $text, NULL));
+    }
+
 ?>

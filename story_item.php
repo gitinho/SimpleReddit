@@ -41,19 +41,21 @@
              echo '<p>' . $comment['comment_text'] . '</p>';
            echo '</article>';
          }?>
-         <form>
+         <form action="add_comment.php" method="post">
             <h2>Add a comment</h2>
-            <?php if ($_SESSION["logged_in"]) {?>
+            <?php 
+                $_SESSION["redirect"] = basename($_SERVER['REQUEST_URI']);
+                if ($_SESSION["logged_in"]) {?>
             <label>Username
                 <?php echo $_SESSION["username"]; ?>
             </label>
+            <input type="hidden" name="username" value="<?=$_SESSION["username"]?>">
             <label>Comment
                 <textarea name="text"></textarea>
             </label>
             <input type="hidden" name="id" value="<?=$id_story?>">
             <input type="submit" value="Reply">
             <?php } else {
-                $_SESSION["redirect"] = basename($_SERVER['REQUEST_URI']);
                 echo '<a href="login.php">Log In</a>';
                 echo '<a href="register.php">Register</a>';
             }?>
