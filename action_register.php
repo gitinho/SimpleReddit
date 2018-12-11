@@ -7,4 +7,6 @@
     } else {
         echo "<script type='text/javascript'>alert('Something goes wrong!');</script>";
     }
+    
+    header ("location: {$_SESSION["redirect"]}");
 ?>

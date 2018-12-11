@@ -12,6 +12,7 @@
         <?php 
         include_once('database/story.php');
         include_once('database/comment.php');
+        include_once('includes/session.php');
 
         $id_story = $_GET['id_story'];
         echo'<h1>'. $id_story .'</h1>';
@@ -42,6 +43,7 @@
          }?>
          <form>
             <h2>Add a comment</h2>
+            <?php if ($_SESSION["logged_in"]) {?>
             <label>Username
                 <?php echo $_SESSION["username"]; ?>
             </label>
@@ -50,6 +52,11 @@
             </label>
             <input type="hidden" name="id" value="<?=$id_story?>">
             <input type="submit" value="Reply">
+            <?php } else {
+                $_SESSION["redirect"] = basename($_SERVER['REQUEST_URI']);
+                echo '<a href="login.php">Log In</a>';
+                echo '<a href="register.php">Register</a>';
+            }?>
         </form>
         
         <?php echo '</section>';

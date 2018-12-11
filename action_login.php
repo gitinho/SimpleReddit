@@ -16,4 +16,6 @@ include_once('database/user.php');
   }
 
   //header('Location: ' . $_SERVER['HTTP_REFERER']);
+  
+  header ("location: {$_SESSION["redirect"]}");
 ?>

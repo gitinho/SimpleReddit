@@ -4,4 +4,5 @@
 
     $_SESSION["logged_in"] = false;
     $_SESSION["username"] = "";
+    header ("location: {$_SERVER['HTTP_REFERER']}");
 ?>

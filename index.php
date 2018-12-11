@@ -24,7 +24,7 @@
             echo $_SESSION["username"];
             echo '<a href="action_logout.php">Log Out</a>';
         } else {
-            echo $_SESSION["logged_in"];
+            $_SESSION["redirect"] = "index.php";
             echo '<a href="login.php">Log In</a>';
             echo '<a href="register.php">Register</a>';
         }?>
