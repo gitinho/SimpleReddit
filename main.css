@@ -1,0 +1,92 @@
+html{
+    background-color: #999;
+}
+form {
+    background-color: #444;
+    color: white;
+    margin: 2em auto;
+    width: 20em;
+    padding: 1em;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+  }
+
+  label {
+    font-family: verdana;
+    margin-top: 1em;
+    font-size: 1.5em;
+  }
+  
+  label, input {
+    display: block;
+  }
+
+  .hint {
+    font-family: verdana;
+    font-size:1em;
+  }
+  
+  input {
+    border: none;
+    background-color: gray;
+    color: black;
+    border-bottom: 1px solid black;
+    width: 100%;
+    font-size: 0.9em;
+  }
+  
+  input[type=submit] {
+    width: auto;
+  
+    background-color: black;
+    color: white;
+  
+    border: none;
+    margin: 1em;
+    padding: 1em;
+    margin-left: auto;
+  }
+  
+  #register h2, #login h2 {
+    font-family: Verdana;
+    font-size: 3em;    
+    text-align: center;
+    color: black;
+  }
+
+  a {
+    font-family: Verdana;
+    color: white;
+    text-decoration: none; 
+    font-size: 1em;
+  }
+
+  .tooltip .tooltiptext {
+    width: 120px;
+    bottom: 100%;
+    left: 50%; 
+    margin-left: -60px;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; 
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 300px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+  }
+  
