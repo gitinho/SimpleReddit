@@ -16,7 +16,7 @@
 
     function addNewUser($username, $password) {
         global $dbh;
-        $stmt = $dbh->prepare("INSERT INTO users VALUES (?, ?);");
+        $stmt = $dbh->prepare("INSERT INTO users VALUES (?, ?)");
         $stmt->execute();
         return $stmt->fetch() !== false;
     }

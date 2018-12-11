@@ -15,11 +15,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <title>Document</title>
 </head>
 <body>
-<a href="login.php">Register</a>
-<a href="register.php">Register</a>
+    <?php
+        if ($_SESSION["logged_in"]) {
+            echo $_SESSION["username"];
+        } else {
+            echo $_SESSION["logged_in"];
+            echo '<a href="login.php">Log In</a>';
+            echo '<a href="register.php">Register</a>';
+        }?>
 
 <section id="list">
     <h1>List</h1>

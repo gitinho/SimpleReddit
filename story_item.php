@@ -39,8 +39,20 @@
              echo '<span>' . $comment['published'] . '</span>';
              echo '<p>' . $comment['comment_text'] . '</p>';
            echo '</article>';
-         }
-         echo '</section>';
+         }?>
+         <form>
+            <h2>Add a comment</h2>
+            <label>Username
+                <input type="text" name="username">
+            </label>
+            <label>Comment
+                <textarea name="text"></textarea>
+            </label>
+            <input type="hidden" name="id" value="<?=$id_story?>">
+            <input type="submit" value="Reply">
+        </form>
+        
+        <?php echo '</section>';
      ?>
 
     </section>
