@@ -23,6 +23,7 @@
         if ($_SESSION["logged_in"]) {
             echo $_SESSION["username"];
             echo '<a href="action_logout.php">Log Out</a>';
+            echo '<a href="edit.php">Edit account</a>';
         } else {
             $_SESSION["redirect"] = "index.php";
             echo '<a href="login.php">Log In</a>';

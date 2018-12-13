@@ -8,10 +8,9 @@
         $stmt->execute(array($username));
         $userData = $stmt->fetch();
         if ($userData !== false){
-            if(!password_verify($password, $userData['password'])){
-                return false;
+            if(password_verify($password, $userData['password'])){
+                return true;
             }
-            return true;
         }
         return false;
     }
@@ -32,11 +31,49 @@
                 . 'VALUES(:username, :password)';
  
         $stmt = $dbh->prepare($sql);
-        $stmt->execute([
+        
+        
+        if ($stmt->execute([
             ':username' => $username,
             ':password' => $hashed_password,
-        ]);
-        return $stmt->fetch() !== false;
+        ]) === FALSE){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    function changeUsername($username, $oldUsername) {
+        global $dbh;
+        $stmt = $dbh->prepare("UPDATE users 
+                               SET username = :username
+                               WHERE username = :oldUsername");
+
+        if ($stmt->execute([
+            ':username' => $username,
+            ':oldUsername' => $oldUsername,
+        ]) === FALSE){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    function changePassword($username, $password) {
+        global $dbh;
+        $hashed_password = makeHash($password);
+
+        $stmt = $dbh->prepare("UPDATE users 
+                               SET password = :password
+                               WHERE username = :username");
+        if ($stmt->execute([
+            ':username' => $username,
+            ':password' => $hashed_password,
+        ]) === FALSE){
+            return false;
+        }else {
+            return true;
+        }
     }
 
     function makeHash($password) {
