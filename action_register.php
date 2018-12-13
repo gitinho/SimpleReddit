@@ -3,9 +3,9 @@
     include_once('database/user.php');
 
     if (addNewUser($_POST['username'], $_POST['password'])) {
-        echo "<script type='text/javascript'>alert('Done it!');</script>";
+        $_SESSION["logged_in"] = true;
+        $_SESSION["username"] = $_POST['username'];
     } else {
-        echo "<script type='text/javascript'>alert('Something goes wrong!');</script>";
     }
     
     header ("location: {$_SESSION["redirect"]}");
