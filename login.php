@@ -6,19 +6,21 @@
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="layout.css" />
+    
     <script src="main.js"></script>
 </head>
 <body>
 
     <form action="action_login.php" method="post">
       <label for="username">Username</label><br>
-      <input type="text" placeholder="username" name="username">
+      <input type="text"  name="username">
       <label for="password">Password</label><br>
-      <input type="password" placeholder="password" name="password">
+      <input type="password"  name="password">
       <div>
         <input type="submit" value="Login">
       </div>
-      <a href="register.php">Register</a>
+      <a href="register.php">Sign up</a>
     </form>
 
 </body>
