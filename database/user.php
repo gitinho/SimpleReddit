@@ -7,6 +7,7 @@
                                ORDER BY id_user");
         $stmt->execute(array($username));
         $userData = $stmt->fetch();
+        var_dump($userData);
         if ($userData !== false){
             if(password_verify($password, $userData['password'])){
                 return true;
@@ -78,6 +79,20 @@
 
     function makeHash($password) {
         return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    function getIDUser($username) {
+        global $dbh;
+        $stmt = $dbh->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->execute(array($username));
+        return $stmt->fetch()["id_user"];
+    }
+
+    function getUsers() {
+        global $dbh;
+        $stmt = $dbh->prepare("SELECT * FROM users");
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
 ?>

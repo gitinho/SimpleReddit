@@ -54,8 +54,21 @@
            echo '<article class="comment">';
              echo '<span>' . $comment['id_user'] . '</span>';
              echo '<span>' . $comment['published'] . '</span>';
+
+             echo '<span><a href="action_upvote.php';
+             echo '?id_comment=' . $comment['id_comment'];
+             echo '&id_story=' . $comment['id_story'];
+             echo '&plus=' . $comment['plus'] . '">▲</a>';
+
+             echo $comment['plus'];
+             echo '<a href="action_downvote.php';
+             echo '?id_comment=' . $comment['id_comment'];
+             echo '&id_story=' . $comment['id_story'];
+             echo '&plus=' . $comment['plus'] . '">▼</a></span>';
+
              echo '<p>' . $comment['comment_text'] . '</p>';
            echo '</article>';
+           $_SESSION["id_comment"] = $comment['id_comment'];
            ?>
            </div>
            <?php

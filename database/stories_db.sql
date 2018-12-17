@@ -10,7 +10,7 @@ CREATE TABLE stories (
     title VARCHAR NOT NULL,
     brief_intro VARCHAR NOT NULL,
     storie_text VARCHAR NOT NULL,
-    plus VARCHAR REFERENCES users
+    plus INTEGER NOT NULL
 );
 CREATE TABLE comments (
     id_comment INTEGER,
@@ -18,21 +18,35 @@ CREATE TABLE comments (
     id_user VARCHAR REFERENCES users NOT NULL,
     published DATE NOT NULL,
     comment_text VARCHAR NOT NULL,
-    plus VARCHAR REFERENCES users,
+    plus INTEGER NOT NULL,
     PRIMARY KEY(id_comment, id_story)
+);
+
+CREATE TABLE comment_upvotes (
+    id_comment INTEGER REFERENCES comments NOT NULL,
+    id_story INTEGER REFERENCES comments NOT NULL,
+    id_user VARCHAR REFERENCES users NOT NULL,
+    PRIMARY KEY(id_comment, id_user)
+);
+
+CREATE TABLE comment_downvotes (
+    id_comment INTEGER REFERENCES comments NOT NULL,
+    id_story INTEGER REFERENCES comments NOT NULL,
+    id_user VARCHAR REFERENCES users NOT NULL,
+    PRIMARY KEY(id_comment, id_user)
 );
 
 INSERT INTO users (username, password) VALUES(
     'Ben1',
-    '123'
+    '$2y$10$T6RUeZsQFwhb89XPUpvkn.fQT3vxHIdlIxlYKRE.6sEdVtTRxUeSW'
 );
 INSERT INTO users (username, password) VALUES(
     'Ben2',
-    '234'
+    '$2y$10$BsrPbmmEQAHWwn8LcmBO4uotZRne2p6C.9h7X9z3Ai0TZg9fB0OVC'
 );
 INSERT INTO users (username, password) VALUES(
     'Ben3',
-    '345'
+    '$2y$10$Skv9Q5.nz62HSDWBYM3S3.NP740Wfb6BSSTa/AHS9d8eG496CM/7S'
 );
 
 INSERT INTO stories VALUES(
@@ -42,7 +56,7 @@ INSERT INTO stories VALUES(
     'Lorem ipsum dolor sit amet',
     'Aenean sed euismod risus. Sed laoreet tellus eu sem tempus commodo. Curabitur ultricies mauris vitae enim accumsan sollicitudin.',
     'Phasellus tincidunt ipsum quis libero finibus, quis vulputate neque interdum. Sed et vehicula dui. Vivamus tristique ante at lorem tincidunt fermentum. Aliquam erat volutpat. Cras ut dolor bibendum, viverra sem eget, laoreet mi. Mauris et augue sit amet odio dapibus accumsan. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus vitae quam auctor, mattis nisi vel, sodales ipsum. Ut ac ullamcorper dolor. Cras ultricies risus eget nunc laoreet, vehicula vestibulum felis eleifend. Fusce ornare tortor ante, eu vulputate elit pellentesque at.',
-    NULL
+    1
 );
 INSERT INTO stories VALUES(
     2,
@@ -51,7 +65,7 @@ INSERT INTO stories VALUES(
     'Proin libero ipsum, porttitor in nunc sit amet',
     'Quisque et quam tempor, tempus augue id, ullamcorper nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra',
     'Morbi sit amet dignissim nisl. Nam ornare risus eu erat vehicula pretium. Donec ut faucibus ex, nec ultricies nunc. Ut purus felis, vehicula vel elit congue, placerat cursus nunc. Vestibulum gravida orci id ligula placerat, eu pulvinar sem pharetra. Proin pulvinar, ipsum at molestie condimentum, ligula ante cursus ligula, congue blandit ex libero nec ipsum. Donec sit amet tortor hendrerit, mattis est eu, scelerisque nibh. Mauris vitae eros velit. Integer vitae semper mauris. Proin ornare ex quis diam feugiat, a euismod quam fermentum. Nam lobortis ultricies interdum.',
-    NULL
+    1
 );
 
 INSERT INTO comments VALUES(
@@ -60,7 +74,7 @@ INSERT INTO comments VALUES(
     'Ben2',
     '2007-01-01 12:34:10',
     'Suspendisse vitae nisl lectus. Etiam hendrerit.',
-    NULL
+    1
 );
 INSERT INTO comments VALUES(
     2,
@@ -68,7 +82,7 @@ INSERT INTO comments VALUES(
     'Ben1',
     '2007-01-01 12:38:34',
     'Non iaculis nisl dui id augue..',
-    NULL
+    1
 );
 INSERT INTO comments VALUES(
     3,
@@ -76,7 +90,7 @@ INSERT INTO comments VALUES(
     'Ben2',
     '2007-01-01 13:12:37',
     'In ultrices diam elit. Aenean nunc eros, dapibus at nisl non, ultrices facilisis purus.',
-    NULL
+    1
 );
 
 INSERT INTO comments VALUES(
@@ -85,5 +99,10 @@ INSERT INTO comments VALUES(
     'Ben1',
     '2007-04-05 17:34:11',
     'Aliquam eget mauris massa. Vestibulum nisi velit, sollicitudin eu odio quis, fermentum lobortis libero.',
-    NULL
+    1
 );
+
+INSERT INTO comment_upvotes VALUES(1,1,2);
+INSERT INTO comment_upvotes VALUES(2,1,1);
+INSERT INTO comment_upvotes VALUES(3,1,2);
+INSERT INTO comment_upvotes VALUES(1,2,1);
