@@ -15,7 +15,7 @@ CREATE TABLE stories (
 CREATE TABLE comments (
     id_comment INTEGER,
     id_story INTEGER,
-    id_user VARCHAR REFERENCES users NOT NULL,
+    id_user INTEGER REFERENCES users NOT NULL,
     published DATE NOT NULL,
     comment_text VARCHAR NOT NULL,
     plus INTEGER NOT NULL,
@@ -63,7 +63,7 @@ INSERT INTO users (username, password) VALUES(
 
 INSERT INTO stories VALUES(
     1,
-    'Ben1',
+    1,
     '2007-01-01 10:00:00',
     'Lorem ipsum dolor sit amet',
     'Aenean sed euismod risus. Sed laoreet tellus eu sem tempus commodo. Curabitur ultricies mauris vitae enim accumsan sollicitudin.',
@@ -72,7 +72,7 @@ INSERT INTO stories VALUES(
 );
 INSERT INTO stories VALUES(
     2,
-    'Ben3',
+    3,
     '2007-04-05 13:45:12',
     'Proin libero ipsum, porttitor in nunc sit amet',
     'Quisque et quam tempor, tempus augue id, ullamcorper nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra',
@@ -83,7 +83,7 @@ INSERT INTO stories VALUES(
 INSERT INTO comments VALUES(
     1,
     1,
-    'Ben2',
+    2,
     '2007-01-01 12:34:10',
     'Suspendisse vitae nisl lectus. Etiam hendrerit.',
     1
@@ -91,7 +91,7 @@ INSERT INTO comments VALUES(
 INSERT INTO comments VALUES(
     2,
     1,
-    'Ben1',
+    1,
     '2007-01-01 12:38:34',
     'Non iaculis nisl dui id augue..',
     1
@@ -99,7 +99,7 @@ INSERT INTO comments VALUES(
 INSERT INTO comments VALUES(
     3,
     1,
-    'Ben2',
+    2,
     '2007-01-01 13:12:37',
     'In ultrices diam elit. Aenean nunc eros, dapibus at nisl non, ultrices facilisis purus.',
     1
@@ -108,7 +108,7 @@ INSERT INTO comments VALUES(
 INSERT INTO comments VALUES(
     1,
     2,
-    'Ben1',
+    1,
     '2007-04-05 17:34:11',
     'Aliquam eget mauris massa. Vestibulum nisi velit, sollicitudin eu odio quis, fermentum lobortis libero.',
     1

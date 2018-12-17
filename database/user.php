@@ -88,6 +88,13 @@
         return $stmt->fetch()["id_user"];
     }
 
+    function getUsername($id) {
+        global $dbh;
+        $stmt = $dbh->prepare("SELECT * FROM users WHERE id_user = ?");
+        $stmt->execute(array($id));
+        return $stmt->fetch()["username"];
+    }
+
     function getUsers() {
         global $dbh;
         $stmt = $dbh->prepare("SELECT * FROM users");

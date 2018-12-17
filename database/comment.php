@@ -30,11 +30,11 @@
         return $stmt->fetch();
     }
 
-    function insertComment($id_comment, $id_story, $username, $date, $text) {
+    function insertComment($id_comment, $id_story, $id_user, $date, $text) {
         global $dbh;
         $stmt = $dbh->prepare("INSERT INTO comments VALUES (?,?,?,?,?,?);");
-        $stmt->execute(array($id_comment, $id_story, $username, $date, $text, 0));
-        upvote(getIDUser($username), $id_comment, $id_story, 0);
+        $stmt->execute(array($id_comment, $id_story, $id_user, $date, $text, 0));
+        upvote($id_user, $id_comment, $id_story, 0);
     }
 
     function hasUpvoted($id_user, $id_comment, $id_story) {

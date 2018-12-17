@@ -25,6 +25,7 @@
 <div class="box header">
 
 <?php
+        $_SESSION["redirect"] = "index.php";
         if ($_SESSION["logged_in"]) {
             ?>
             <div class = "logo"> <img src="style/logo.png" width="55"> </div>
@@ -36,7 +37,6 @@
             ?>
             <div class = "logo"> <img src="style/logo.png" width="55"> </div>
             <?php
-            $_SESSION["redirect"] = "index.php";
             echo '<a href="login.php"> Log In </a>';
             echo '<a href="register.php">Sign up</a>';
         }?>
