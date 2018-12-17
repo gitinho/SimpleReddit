@@ -16,7 +16,9 @@
         <?php 
         include_once('database/story.php');
         include_once('database/comment.php');
+        include_once('database/connection.php');
         include_once('includes/session.php');
+
         $id_story = $_GET['id_story'];
         /*
         echo'<h1>'. $id_story .'</h1>'; 
@@ -34,6 +36,17 @@
                                WHERE id_story = $id_story");
         $stmt->execute();
         $comments = $stmt->fetchAll();
+
+        if(hasUpvotedStory($_SESSION["id_user"], $id_story))
+            echo '<a href="action_upvote_story.php">⬆</a>';
+        else
+            echo '<a href="action_upvote_story.php">⇧</a>';
+        echo $story['plus'];
+        if(hasDownvotedStory($_SESSION["id_user"], $id_story))
+            echo '<a href="action_downvote_story.php">⬇</a>';
+        else
+            echo '<a href="action_downvote_story.php">⇩</a>';
+        $_SESSION["story"] = $story;
 
          echo '<h1>' . $story['title']  . '</h1>';
          ?>
@@ -58,13 +71,24 @@
              echo '<span><a href="action_upvote.php';
              echo '?id_comment=' . $comment['id_comment'];
              echo '&id_story=' . $comment['id_story'];
-             echo '&plus=' . $comment['plus'] . '">▲</a>';
+             echo '&plus=' . $comment['plus'];
+
+             if (hasUpvoted($_SESSION["id_user"], $comment['id_comment'], $comment['id_story']))
+                echo '">⬆</a>';
+             else
+                echo '">⇧</a>';
 
              echo $comment['plus'];
+
              echo '<a href="action_downvote.php';
              echo '?id_comment=' . $comment['id_comment'];
              echo '&id_story=' . $comment['id_story'];
-             echo '&plus=' . $comment['plus'] . '">▼</a></span>';
+             echo '&plus=' . $comment['plus'];
+
+             if (hasDownvoted($_SESSION["id_user"], $comment['id_comment'], $comment['id_story']))
+                echo '">⬇</a></span>';
+             else
+                echo '">⇩</a></span>';
 
              echo '<p>' . $comment['comment_text'] . '</p>';
            echo '</article>';

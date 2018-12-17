@@ -36,6 +36,18 @@ CREATE TABLE comment_downvotes (
     PRIMARY KEY(id_comment, id_user)
 );
 
+CREATE TABLE story_upvotes (
+    id_story INTEGER REFERENCES comments NOT NULL,
+    id_user VARCHAR REFERENCES users NOT NULL,
+    PRIMARY KEY(id_story, id_user)
+);
+
+CREATE TABLE story_downvotes (
+    id_story INTEGER REFERENCES comments NOT NULL,
+    id_user VARCHAR REFERENCES users NOT NULL,
+    PRIMARY KEY(id_story, id_user)
+);
+
 INSERT INTO users (username, password) VALUES(
     'Ben1',
     '$2y$10$T6RUeZsQFwhb89XPUpvkn.fQT3vxHIdlIxlYKRE.6sEdVtTRxUeSW'
@@ -106,3 +118,6 @@ INSERT INTO comment_upvotes VALUES(1,1,2);
 INSERT INTO comment_upvotes VALUES(2,1,1);
 INSERT INTO comment_upvotes VALUES(3,1,2);
 INSERT INTO comment_upvotes VALUES(1,2,1);
+
+INSERT INTO story_upvotes VALUES(1,1);
+INSERT INTO story_upvotes VALUES(2,3);

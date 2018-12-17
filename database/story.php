@@ -15,4 +15,62 @@
         $stmt->execute(array($id));
         return $stmt->fetch();
     }
+
+    function hasUpvotedStory($id_user, $id_story) {
+        global $dbh;
+        $stmt = $dbh->prepare("SELECT * FROM story_upvotes WHERE id_story = $id_story AND id_user = $id_user");
+        $stmt->execute();
+        return $stmt->fetch() !== false;
+    }
+
+    function upvoteStory($id_user, $id_story, $plus) {
+        global $dbh;
+        if(hasUpvotedStory($id_user, $id_story)){
+            $stmt = $dbh->prepare("DELETE FROM story_upvotes WHERE id_story = $id_story AND id_user = $id_user");
+            $stmt->execute();
+            $stmt = $dbh->prepare("UPDATE stories SET plus = $plus - 1 WHERE id_story = $id_story");
+            $stmt->execute();
+        } else {
+            $stmt = $dbh->prepare("INSERT INTO story_upvotes VALUES ($id_story, $id_user)");
+            $stmt->execute();
+            $stmt = $dbh->prepare("UPDATE stories SET plus = $plus + 1 WHERE id_story = $id_story");
+            $stmt->execute();
+        }
+
+        if(hasDownvotedStory($id_user, $id_story)){
+            $stmt = $dbh->prepare("DELETE FROM story_downvotes WHERE id_story = $id_story AND id_user = $id_user");
+            $stmt->execute();
+            $stmt = $dbh->prepare("UPDATE stories SET plus = $plus + 2 WHERE id_story = $id_story");
+            $stmt->execute();
+        }
+    }
+
+    function hasDownvotedStory($id_user, $id_story) {
+        global $dbh;
+        $stmt = $dbh->prepare("SELECT * FROM story_downvotes WHERE id_story = $id_story AND id_user = $id_user");
+        $stmt->execute();
+        return $stmt->fetch() !== false;
+    }
+
+    function downvoteStory($id_user, $id_story, $plus) {
+        global $dbh;
+        if(hasDownvotedStory($id_user, $id_story)){
+            $stmt = $dbh->prepare("DELETE FROM story_downvotes WHERE id_story = $id_story AND id_user = $id_user");
+            $stmt->execute();
+            $stmt = $dbh->prepare("UPDATE stories SET plus = $plus + 1 WHERE id_story = $id_story");
+            $stmt->execute();
+        } else {
+            $stmt = $dbh->prepare("INSERT INTO story_downvotes VALUES ($id_story, $id_user)");
+            $stmt->execute();
+            $stmt = $dbh->prepare("UPDATE stories SET plus = $plus - 1 WHERE id_story = $id_story");
+            $stmt->execute();
+        }
+
+        if(hasUpvotedStory($id_user, $id_story)){
+            $stmt = $dbh->prepare("DELETE FROM story_upvotes WHERE id_story = $id_story AND id_user = $id_user");
+            $stmt->execute();
+            $stmt = $dbh->prepare("UPDATE stories SET plus = $plus - 2 WHERE id_story = $id_story");
+            $stmt->execute();
+        }
+    }
 ?>
