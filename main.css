@@ -40,6 +40,7 @@ form .tooltip > input {
   width: 175%;
   font-size: 0.9em;
 }
+
   
 input[type=submit] {
   width: 50%;
@@ -167,7 +168,7 @@ textarea {
   border: none;
   background-color:#444;
   color: white;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid;
   width: 100%;
   height: 21px;
   font-size: 0.9em;
@@ -185,3 +186,21 @@ textarea {
   font-family: Verdana;
 }
 
+
+/* validation style */
+
+input.invalid {
+  border-bottom: 3px solid orange;
+}
+
+input.valid {
+  border-bottom: 3px solid green;
+}
+
+.tooltip > input.invalid {
+  border-bottom: 5px solid orange;
+}
+
+.tooltip > input.valid {
+  border-bottom: 5px solid green;
+}

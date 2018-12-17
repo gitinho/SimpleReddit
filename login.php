@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="layout.css" />
     
-    <script src="main.js"></script>
+    <!--<script src="main.js"></script>-->
 </head>
 <body>
 
@@ -21,7 +21,9 @@
         <input type="submit" value="Login">
       </div>
       <a href="register.php">Sign up</a>
+      <p>
+      <a href="index.php">Go back</a>
     </form>
-
+    <script type="text/javascript" src="validation.js"></script>
 </body>
 </html>

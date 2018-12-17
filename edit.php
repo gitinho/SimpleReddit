@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="layout.css" />
 
-    <script src="main.js"></script>
+    <!--<script src="main.js"></script>-->
 </head>
 <body>
 
@@ -30,6 +30,8 @@
       <div>
         <input type="submit" value="Change">
       </div>
+      <script type="text/javascript" src="validation.js"></script>
+
     </form>
 
     <a href="index.php">Go back</a>

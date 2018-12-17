@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="layout.css" />
-    <script src="main.js"></script>
+    <!--<script src="main.js"></script>-->
 </head>
 <body>
     <div id="register">
@@ -24,7 +24,7 @@
         <label for="password">Password</label><br>
         <div class="tooltip">
         <input type="password" name="password"  required>
-        <span class="tooltiptext">One uppercase, 1 symbol, 1 number, at least 8 characters</span>
+        <span class="tooltiptext">At least one uppercase letter, one symbol, one number, minimum 8 characters</span>
         </div>
         </p>    
         <p>
@@ -36,9 +36,12 @@
         </p>
         <p class="register_submit">
         <input type="submit" value="Sign up">
+        <a href="index.php">Go back</a>
+
         </p>
     </form>
     </div>
+        <script type="text/javascript" src="validation.js"></script>
 
 </body>
 </html>
