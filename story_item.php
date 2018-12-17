@@ -39,6 +39,7 @@
 
         echo '<div class="votes">';
 
+        $_SESSION["story"] = $story;
         if(hasUpvotedStory($_SESSION["id_user"], $id_story))
             echo '<a href="action_upvote_story.php">⬆</a>';
         else
@@ -50,7 +51,6 @@
             echo '<a href="action_downvote_story.php">⇩</a>';
 
         echo '</div>';
-        $_SESSION["story"] = $story;
 
          echo '<h1>' . $story['title']  . '</h1>';
          ?>
