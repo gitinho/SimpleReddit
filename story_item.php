@@ -37,6 +37,8 @@
         $stmt->execute();
         $comments = $stmt->fetchAll();
 
+        echo '<div class="votes">';
+
         if(hasUpvotedStory($_SESSION["id_user"], $id_story))
             echo '<a href="action_upvote_story.php">⬆</a>';
         else
@@ -46,6 +48,8 @@
             echo '<a href="action_downvote_story.php">⬇</a>';
         else
             echo '<a href="action_downvote_story.php">⇩</a>';
+
+        echo '</div>';
         $_SESSION["story"] = $story;
 
          echo '<h1>' . $story['title']  . '</h1>';
@@ -68,7 +72,7 @@
              echo '<span>' . $comment['id_user'] . '</span>';
              echo '<span>' . $comment['published'] . '</span>';
 
-             echo '<span><a href="action_upvote.php';
+             echo '<div class="votes"><a href="action_upvote.php';
              echo '?id_comment=' . $comment['id_comment'];
              echo '&id_story=' . $comment['id_story'];
              echo '&plus=' . $comment['plus'];
@@ -86,9 +90,9 @@
              echo '&plus=' . $comment['plus'];
 
              if (hasDownvoted($_SESSION["id_user"], $comment['id_comment'], $comment['id_story']))
-                echo '">⬇</a></span>';
+                echo '">⬇</a></div>';
              else
-                echo '">⇩</a></span>';
+                echo '">⇩</a></div>';
 
              echo '<p>' . $comment['comment_text'] . '</p>';
            echo '</article>';

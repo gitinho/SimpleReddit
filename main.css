@@ -22,6 +22,11 @@ label, input {
   display: block;
 }
 
+.votes {
+  width: 1em;
+  display: grid;
+}
+
 form  > input {
   border: none;
   background-color:#444;
