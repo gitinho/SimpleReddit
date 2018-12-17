@@ -69,7 +69,7 @@
             <div id = "comment">
             <?php
            echo '<article class="comment">';
-             echo '<span>' . getUsername($comment['id_user']) . '</span>';
+             echo '<span><a href="user_page.php?id_user=' . $comment['id_user'] . '">' . getUsername($comment['id_user']) . '</a></span>';
              echo '<span>' . $comment['published'] . '</span>';
 
              echo '<div class="votes"><a href="action_upvote.php';
