@@ -7,7 +7,7 @@
     echo '<div class = "logo"> <a href="index.php"><img src="style/logo.png" width="55"></a> </div>';
     if ($_SESSION["logged_in"]) {
         ?>
-        <div class = "username"><?= $_SESSION['username'] ?></div>
+        <div class = "username"><a href="user_page.php?id_user=<?= getIDUser($_SESSION['username']) ?>"><?= $_SESSION['username'] ?></a></div>
         <?php
         echo '<a href="action_logout.php"> Log Out</a>';
         echo '<a href="edit.php">Edit account</a>';

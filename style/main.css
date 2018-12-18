@@ -140,6 +140,12 @@ a {
   margin-left: 150px;
 }
 
+.username > a{
+  position: absolute;
+  top:0px;
+  margin-left: 10px;
+}
+
 
 p {
   font-family: Verdana;

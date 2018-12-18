@@ -16,6 +16,13 @@
         return $stmt->fetch();
     }
 
+    function insertStory($id_story, $id_user, $date, $title, $intro, $text) {
+        global $dbh;
+        $stmt = $dbh->prepare("INSERT INTO stories VALUES (?,?,?,?,?,?,?);");
+        $stmt->execute(array($id_story, $id_user, $date, $title, $intro, $text, 0));
+        upvoteStory($id_user, $id_story, 0);
+    }
+
     function hasUpvotedStory($id_user, $id_story) {
         global $dbh;
         $stmt = $dbh->prepare("SELECT * FROM story_upvotes WHERE id_story = $id_story AND id_user = $id_user");

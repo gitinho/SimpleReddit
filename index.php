@@ -34,12 +34,44 @@
             $id =  $story['id_story'];
             echo '<h3>' . "<a href=\"story_item.php?id_story=".$id."\">" .  $story['title'] . '</a>' . '</h1>';
             echo '<p>' .  $story['brief_intro'] . '</p>';
+            $_SESSION["id_story"] = $id;
         } 
         ?>
 </section>
+<form action="add_story.php" method="post">
+            <h2>Add a post</h2>
+            <?php 
+                $_SESSION["redirect"] = basename($_SERVER['REQUEST_URI']);
+                if ($_SESSION["logged_in"]) {?>
+            <label>Username: 
+                <?php echo $_SESSION["username"]; ?>
+            </label>
+            <input type="hidden" name="username" value="<?=$_SESSION["username"]?>">
+            <label>Title
+                <textarea name="title"></textarea>
+            </label>
+            <label>Intro
+                <textarea name="intro"></textarea>
+            </label>
+            <label>Content
+                <textarea name="text"></textarea>
+            </label>
+            <input type="submit" value="Submit">
+            <?php } else {
+                ?>
+                <div id = "links">
+                <?php
+                echo '<a href="login.php">Log In</a>';
+                echo '<a href="register.php">Register</a>';
+                ?>
+                </div>
+                <?php
+            }?>
+        </form>
 </div>
 
   <div class="box footer">
+<?php include_once('includes/footer.php'); ?>
         </div>
 </div>
 </body>
