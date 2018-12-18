@@ -37,7 +37,7 @@
             $_SESSION["id_story"] = $id;
         } 
         ?>
-</section>
+
 </div>
 <form action="add_story.php" method="post">
             <h2>Add a post</h2>
@@ -69,7 +69,8 @@
                 <?php
             }?>
         </form>
-
+    </section>
+    </div>
   <div class="box footer">
 <?php include_once('includes/footer.php'); ?>
         </div>
