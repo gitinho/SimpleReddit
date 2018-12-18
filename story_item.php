@@ -56,9 +56,9 @@
 			else
 				echo '<a href="action_downvote_story.php">⇩</a>';
 		} else {
-			echo '<a href="action_login.php">⇧</a>';
+			echo '<a href="login.php">⇧</a>';
 			echo $story['plus'];
-			echo '<a href="action_login.php">⇩</a>';
+			echo '<a href="login.php">⇩</a>';
 		}
 
         echo '</div>';
@@ -104,10 +104,10 @@
 				else
 					echo '">⇩</a></div>';
 			 } else {
-				echo '<div class="votes"><a href="action_login.php';
+				echo '<div class="votes"><a href="login.php';
 				echo '">⇧</a>';
 				echo $comment['plus'];
-				echo '<a href="action_login.php';
+				echo '<a href="login.php';
 				echo '">⇩</a></div>';
 			 }
 
