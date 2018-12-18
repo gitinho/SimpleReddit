@@ -26,14 +26,14 @@ CREATE TABLE comment_upvotes (
     id_comment INTEGER REFERENCES comments NOT NULL,
     id_story INTEGER REFERENCES comments NOT NULL,
     id_user VARCHAR REFERENCES users NOT NULL,
-    PRIMARY KEY(id_comment, id_user)
+    PRIMARY KEY(id_comment, id_story, id_user)
 );
 
 CREATE TABLE comment_downvotes (
     id_comment INTEGER REFERENCES comments NOT NULL,
     id_story INTEGER REFERENCES comments NOT NULL,
     id_user VARCHAR REFERENCES users NOT NULL,
-    PRIMARY KEY(id_comment, id_user)
+    PRIMARY KEY(id_comment, id_story, id_user)
 );
 
 CREATE TABLE story_upvotes (

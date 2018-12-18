@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+        include_once('database/story.php');
+        include_once('database/comment.php');
+        include_once('database/connection.php');
+        include_once('includes/session.php');
+        $_SESSION["redirect"] = basename($_SERVER['REQUEST_URI']);
+
+        $id_user = $_GET['id_user'];
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,21 +16,14 @@
     <link rel="stylesheet" type="text/css" media="screen" href="style/main.css" />
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Story</title>
+    <title><?=getUsername($id_user)?></title>
 </head>
 <body>
 <div class="wrapper">
 <div class="box header">
     <section id="story">
-        <?php 
-        include_once('database/story.php');
-        include_once('database/comment.php');
-        include_once('database/connection.php');
-        include_once('includes/session.php');
+        <?php
         include_once('includes/header.php');
-        $_SESSION["redirect"] = basename($_SERVER['REQUEST_URI']);
-
-        $id_user = $_GET['id_user'];
         /*
         echo'<h1>'. $id_story .'</h1>'; 
         */
@@ -37,6 +39,12 @@
                                WHERE id_user = $id_user");
         $stmt->execute();
         $comments = $stmt->fetchAll();
+
+        $stmt = $db->prepare("SELECT *
+                               FROM stories 
+                               WHERE id_user = $id_user");
+        $stmt->execute();
+        $stories = $stmt->fetchAll();
         ?>
          </div>
          <div class = "box content">
@@ -60,27 +68,37 @@
              echo '<span>' . getUsername($comment['id_user']) . '</span>';
              echo '<span>' . $comment['published'] . '</span>';
 
+			 
+			 if($_SESSION["logged_in"]) {
+
              echo '<div class="votes"><a href="action_upvote.php';
              echo '?id_comment=' . $comment['id_comment'];
              echo '&id_story=' . $comment['id_story'];
              echo '&plus=' . $comment['plus'];
-
-             if (hasUpvoted($_SESSION["id_user"], $comment['id_comment'], $comment['id_story']))
-                echo '">⬆</a>';
-             else
-                echo '">⇧</a>';
-
-             echo $comment['plus'];
-
-             echo '<a href="action_downvote.php';
-             echo '?id_comment=' . $comment['id_comment'];
-             echo '&id_story=' . $comment['id_story'];
-             echo '&plus=' . $comment['plus'];
-
-             if (hasDownvoted($_SESSION["id_user"], $comment['id_comment'], $comment['id_story']))
-                echo '">⬇</a></div>';
-             else
-                echo '">⇩</a></div>';
+				if (hasUpvoted($_SESSION["id_user"], $comment['id_comment'], $comment['id_story']))
+					echo '">⬆</a>';
+				else
+					echo '">⇧</a>';
+	
+				echo $comment['plus'];
+	
+				echo '<a href="action_downvote.php';
+				echo '?id_comment=' . $comment['id_comment'];
+				echo '&id_story=' . $comment['id_story'];
+				echo '&plus=' . $comment['plus'];
+	
+				if (hasDownvoted($_SESSION["id_user"], $comment['id_comment'], $comment['id_story']))
+					echo '">⬇</a></div>';
+				else
+					echo '">⇩</a></div>';
+			 } else {
+				echo '<div class="votes"><a href="login.php';
+				echo '">⇧</a>';
+				echo $comment['plus'];
+				echo '<a href="login.php';
+				echo '">⇩</a></div>';
+			 }
+				 
 
              echo '<p>' . $comment['comment_text'] . '</p>';
            echo '</article>';
@@ -88,7 +106,14 @@
            ?>
            </div>
            <?php
-         }?>
+         }
+         foreach( $stories as $story) {
+            $id =  $story['id_story'];
+            echo '<h3>' . "<a href=\"story_item.php?id_story=".$id."\">" .  $story['title'] . ', by ' . getUsername($story["id_user"]) . '</a>' . '</h1>';
+            echo '<p>' .  $story['brief_intro'] . '</p>';
+            $_SESSION["id_story"] = $id;
+        } 
+         ?>
          
          </div>
         

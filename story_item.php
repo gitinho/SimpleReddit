@@ -1,30 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" media="screen" href="style/layout.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="style/main.css" />
-
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Story</title>
-</head>
-<body>
-<div class="wrapper">
-<div class="box header">
-    <section id="story">
-        <?php 
+<?php 
         include_once('database/story.php');
         include_once('database/comment.php');
         include_once('database/connection.php');
         include_once('includes/session.php');
-        include_once('includes/header.php');
         $_SESSION["redirect"] = basename($_SERVER['REQUEST_URI']);
 
         $id_story = $_GET['id_story'];
-        /*
-        echo'<h1>'. $id_story .'</h1>'; 
-        */
+        
         $db = new PDO('sqlite:database/stories_db.db');
         $stmt = $db->prepare("SELECT * 
                                FROM stories 
@@ -32,6 +16,26 @@
                                ORDER BY published");
         $stmt->execute(array($id_story));
         $story =  $stmt->fetch();
+?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="screen" href="style/layout.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/main.css" />
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><?=$story["title"]?></title>
+</head>
+<body>
+<div class="wrapper">
+<div class="box header">
+    <section id="story">
+        <?php
+        include_once('includes/header.php');
+        
+        /*
+        echo'<h1>'. $id_story .'</h1>'; 
+        */
 
         $stmt = $db->prepare("SELECT *
                                FROM comments 
@@ -63,7 +67,7 @@
 
         echo '</div>';
 
-         echo '<h1>' . $story['title']  . '</h1>';
+         echo '<h1>' . $story['title']  . ', by <a href="user_page.php?id_user=' . $story["id_user"] . '">' . getUsername($story["id_user"]) . '</a></h1>';
         
          echo '<p>' . $story['brief_intro'] . '</p>';
          echo '<p>'. $story['storie_text'] .'</p>';

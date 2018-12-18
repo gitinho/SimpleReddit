@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="style/layout.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="style/main.css" />
 
-    <title>Document</title>
+    <title>Simple Reddit</title>
 </head>
 <body>
 <div class="wrapper">
@@ -32,7 +32,7 @@
     <?php 
         foreach( $stories as $story) {
             $id =  $story['id_story'];
-            echo '<h3>' . "<a href=\"story_item.php?id_story=".$id."\">" .  $story['title'] . '</a>' . '</h1>';
+            echo '<h3>' . "<a href=\"story_item.php?id_story=".$id."\">" .  $story['title'] . ', by ' . getUsername($story["id_user"]) . '</a>' . '</h1>';
             echo '<p>' .  $story['brief_intro'] . '</p>';
             $_SESSION["id_story"] = $id;
         } 
