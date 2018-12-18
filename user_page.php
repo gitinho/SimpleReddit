@@ -37,14 +37,14 @@
                                WHERE id_user = $id_user");
         $stmt->execute();
         $comments = $stmt->fetchAll();
-
-        echo '<div class="votes">';
-
-         echo '<h1>' . getUsername($id_user)  . '</h1>';
-         ?>
+        ?>
          </div>
          <div class = "box content">
          <?php
+        echo '<div class="votes">';
+
+         echo '<h1>' . getUsername($id_user)  . '</h1>';
+         
          echo '<section id="comments">';
          ?>
          </div>

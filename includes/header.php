@@ -4,7 +4,7 @@
     include_once('database/story.php');
     include_once('database/comment.php');
     $_SESSION["redirect"] = "index.php";
-    echo '<div class = "logo"> <a href="index.php"><img src="style/logo.png" width="55"></a> </div>';
+    echo '<div id = "logo"> <a href="index.php"><img src="style/logo.png" width="55"></a> </div>';
     if ($_SESSION["logged_in"]) {
         ?>
         <div class = "username"><a href="user_page.php?id_user=<?= getIDUser($_SESSION['username']) ?>"><?= $_SESSION['username'] ?></a></div>

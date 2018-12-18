@@ -7,7 +7,9 @@ html{
 form {
   background-color: #444;
   color: white;
-  margin: 2em 33.5em;
+  margin:2em auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
   width: 20em;
   padding: 1em;
   border-radius: 15px;
@@ -19,8 +21,19 @@ form  > input {
   color: white;
   border-bottom: 2px solid black;
   width: 100%;
-
   font-size: 0.9em;
+}
+
+.wrapper form {
+  background-color: #444;
+  color: white;
+  position: relative;
+  left:33em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  width: 20em;
+  padding: 1em;
+  border-radius: 15px;
 }
 
 input[type=submit] {
@@ -111,6 +124,8 @@ h3{
   text-decoration: underline;
 }
 
+/* Header */
+
 a {
   font-family: Verdana;
   color: white;
@@ -125,7 +140,14 @@ a {
 .header a {
   padding: 0 1em;
   position: relative;
-  left: 80%;
+  left: 75%;
+}
+
+#logo a {
+  border: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
 }
 
 .username:before{
@@ -137,10 +159,11 @@ a {
   font-size: 2em;
   position: absolute;
   top:25px;
-  margin-left: 150px;
+  margin-left:80px;
 }
 
-.username > a{
+.username a:first-of-type{
+  border:none;
   position: absolute;
   top:0px;
   margin-left: 10px;
@@ -151,11 +174,6 @@ p {
   font-family: Verdana;
 }
 
-.logo {
-  position: absolute;
-  top:19px;
-  margin-left: 0px;
-}
 
 /* comments */
 
@@ -185,11 +203,41 @@ p {
   font-family: Verdana;
 }
 
+/* votes */
+
 .votes {
-  width: 1em;
-  display: grid;
+  width: 0px;
+  height: 0px;
 }
 
+.content .votes a {
+  border: none;
+  padding: 2em;
+  position: relative;
+  left: 0%;
+}
+
+.content .votes {
+  position: relative;
+  left: 84%;
+  top: 10px;
+}
+
+.votes a {
+  padding: 2em;
+}
+
+#comment .votes {
+  position: relative;
+  left: 85%;
+  top:-10px;
+}
+
+.content .votes > h1 {
+  position: relative;
+  left: -82%;
+  top: 10px;
+}
 
 /* validation style */
 

@@ -38,7 +38,10 @@
                                WHERE id_story = $id_story");
         $stmt->execute();
         $comments = $stmt->fetchAll();
-
+        ?>
+        </div>
+        <div class = "box content">
+        <?php
         echo '<div class="votes">';
 
         $_SESSION["story"] = $story;
@@ -55,10 +58,7 @@
         echo '</div>';
 
          echo '<h1>' . $story['title']  . '</h1>';
-         ?>
-         </div>
-         <div class = "box content">
-         <?php
+        
          echo '<p>' . $story['brief_intro'] . '</p>';
          echo '<p>'. $story['storie_text'] .'</p>';
          echo '<section id="comments">';
