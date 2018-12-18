@@ -19,6 +19,7 @@
         include_once('database/connection.php');
         include_once('includes/session.php');
         include_once('includes/header.php');
+        $_SESSION["redirect"] = basename($_SERVER['REQUEST_URI']);
 
         $id_user = $_GET['id_user'];
         /*
@@ -49,10 +50,12 @@
          </div>
          <div class = "box footer">
          <?php
+         $karma = 0;
          foreach($comments as $comment){
             ?>
             <div id = "comment">
             <?php
+            $karma += $comment["plus"];
            echo '<article class="comment">';
              echo '<span>' . getUsername($comment['id_user']) . '</span>';
              echo '<span>' . $comment['published'] . '</span>';
@@ -90,6 +93,8 @@
          </div>
         
         <?php echo '</section>';
+        
+        echo '<p>Total points: ' . $karma . '</p>';
      ?>
 
     </section>

@@ -19,6 +19,7 @@
         include_once('database/connection.php');
         include_once('includes/session.php');
         include_once('includes/header.php');
+        $_SESSION["redirect"] = basename($_SERVER['REQUEST_URI']);
 
         $id_story = $_GET['id_story'];
         /*
