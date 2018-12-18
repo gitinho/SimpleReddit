@@ -233,10 +233,10 @@ p {
   top:-10px;
 }
 
-.content .votes > h1 {
+.content .votes h1 {
   position: relative;
-  left: -82%;
-  top: 10px;
+  left: -36em;
+  top:-20px;
 }
 
 /* validation style */
