@@ -18,6 +18,7 @@
         include_once('database/comment.php');
         include_once('database/connection.php');
         include_once('includes/session.php');
+        include_once('includes/header.php');
 
         $id_story = $_GET['id_story'];
         /*

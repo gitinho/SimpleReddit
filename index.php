@@ -24,22 +24,7 @@
 <div class="wrapper">
 <div class="box header">
 
-<?php
-        $_SESSION["redirect"] = "index.php";
-        if ($_SESSION["logged_in"]) {
-            ?>
-            <div class = "logo"> <img src="style/logo.png" width="55"> </div>
-            <div class = "username"><?= $_SESSION['username'] ?></div>
-            <?php
-            echo '<a href="action_logout.php"> Log Out</a>';
-            echo '<a href="edit.php">Edit account</a>';
-        } else { 
-            ?>
-            <div class = "logo"> <img src="style/logo.png" width="55"> </div>
-            <?php
-            echo '<a href="login.php"> Log In </a>';
-            echo '<a href="register.php">Sign up</a>';
-        }?>
+<?php include_once('includes/header.php');?>
 
 </div>
 <div class="box content">
