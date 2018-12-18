@@ -13,6 +13,7 @@ include_once('database/user.php');
   } else {
     //$_SESSION['error_messages'][] = "Login Failed!";
   }
+  //var_dump(password_hash($_POST['password'], PASSWORD_DEFAULT));
 
   //header('Location: ' . $_SERVER['HTTP_REFERER']);
   header ("location: {$_SESSION["redirect"]}");

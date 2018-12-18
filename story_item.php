@@ -45,15 +45,21 @@
         echo '<div class="votes">';
 
         $_SESSION["story"] = $story;
-        if(hasUpvotedStory($_SESSION["id_user"], $id_story))
-            echo '<a href="action_upvote_story.php">⬆</a>';
-        else
-            echo '<a href="action_upvote_story.php">⇧</a>';
-        echo $story['plus'];
-        if(hasDownvotedStory($_SESSION["id_user"], $id_story))
-            echo '<a href="action_downvote_story.php">⬇</a>';
-        else
-            echo '<a href="action_downvote_story.php">⇩</a>';
+		if($_SESSION["logged_in"]) {
+			if(hasUpvotedStory($_SESSION["id_user"], $id_story))
+				echo '<a href="action_upvote_story.php">⬆</a>';
+			else
+				echo '<a href="action_upvote_story.php">⇧</a>';
+			echo $story['plus'];
+			if(hasDownvotedStory($_SESSION["id_user"], $id_story))
+				echo '<a href="action_downvote_story.php">⬇</a>';
+			else
+				echo '<a href="action_downvote_story.php">⇩</a>';
+		} else {
+			echo '<a href="action_login.php">⇧</a>';
+			echo $story['plus'];
+			echo '<a href="action_login.php">⇩</a>';
+		}
 
         echo '</div>';
 
@@ -73,28 +79,37 @@
            echo '<article class="comment">';
              echo '<span><a href="user_page.php?id_user=' . $comment['id_user'] . '">' . getUsername($comment['id_user']) . '</a></span>';
              echo '<span>' . $comment['published'] . '</span>';
+			 
+			 if($_SESSION["logged_in"]) {
 
-             echo '<div class="votes"><a href="action_upvote.php';
-             echo '?id_comment=' . $comment['id_comment'];
-             echo '&id_story=' . $comment['id_story'];
-             echo '&plus=' . $comment['plus'];
-
-             if (hasUpvoted($_SESSION["id_user"], $comment['id_comment'], $comment['id_story']))
-                echo '">⬆</a>';
-             else
-                echo '">⇧</a>';
-
-             echo $comment['plus'];
-
-             echo '<a href="action_downvote.php';
-             echo '?id_comment=' . $comment['id_comment'];
-             echo '&id_story=' . $comment['id_story'];
-             echo '&plus=' . $comment['plus'];
-
-             if (hasDownvoted($_SESSION["id_user"], $comment['id_comment'], $comment['id_story']))
-                echo '">⬇</a></div>';
-             else
-                echo '">⇩</a></div>';
+				echo '<div class="votes"><a href="action_upvote.php';
+				echo '?id_comment=' . $comment['id_comment'];
+				echo '&id_story=' . $comment['id_story'];
+				echo '&plus=' . $comment['plus'];
+				
+				if (hasUpvoted($_SESSION["id_user"], $comment['id_comment'], $comment['id_story']))
+					echo '">⬆</a>';
+				else
+					echo '">⇧</a>';
+	
+				echo $comment['plus'];
+	
+				echo '<a href="action_downvote.php';
+				echo '?id_comment=' . $comment['id_comment'];
+				echo '&id_story=' . $comment['id_story'];
+				echo '&plus=' . $comment['plus'];
+	
+				if (hasDownvoted($_SESSION["id_user"], $comment['id_comment'], $comment['id_story']))
+					echo '">⬇</a></div>';
+				else
+					echo '">⇩</a></div>';
+			 } else {
+				echo '<div class="votes"><a href="action_login.php';
+				echo '">⇧</a>';
+				echo $comment['plus'];
+				echo '<a href="action_login.php';
+				echo '">⇩</a></div>';
+			 }
 
              echo '<p>' . $comment['comment_text'] . '</p>';
            echo '</article>';

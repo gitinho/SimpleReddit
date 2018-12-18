@@ -50,15 +50,15 @@ CREATE TABLE story_downvotes (
 
 INSERT INTO users (username, password) VALUES(
     'Ben1',
-    '$2y$10$T6RUeZsQFwhb89XPUpvkn.fQT3vxHIdlIxlYKRE.6sEdVtTRxUeSW'
+    '$2y$10$KX8Y6B.hTt8/Q5nOZ7UYE.DLA4daQebEfTUEgQjo2O9ChLqusLcC2'
 );
 INSERT INTO users (username, password) VALUES(
     'Ben2',
-    '$2y$10$BsrPbmmEQAHWwn8LcmBO4uotZRne2p6C.9h7X9z3Ai0TZg9fB0OVC'
+    '$2y$10$rymZ.pE.SmfSHHONEwid4OBr7qg/FmbWKJMFpYle2Wh/4jbq5RkS6'
 );
 INSERT INTO users (username, password) VALUES(
     'Ben3',
-    '$2y$10$Skv9Q5.nz62HSDWBYM3S3.NP740Wfb6BSSTa/AHS9d8eG496CM/7S'
+    '$2y$10$gjJ9rz9Kwu2o/u1Aojkqy.ObrCEReIFObk0NX61givwZJzXP.v2oe'
 );
 
 INSERT INTO stories VALUES(

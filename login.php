@@ -24,6 +24,6 @@
       <p>
       <a href="index.php">Go back</a>
     </form>
-    <script type="text/javascript" src="validation.js"></script>
+    <!--<script type="text/javascript" src="validation.js"></script>-->
 </body>
 </html>
