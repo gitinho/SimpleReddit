@@ -108,11 +108,14 @@
            <?php
          }
          foreach( $stories as $story) {
+            echo '<div id="comment">';
+
             $id_story =  $story['id_story'];
             
             echo '<h3>' . "<a href=\"story_item.php?id_story=".$id_story."\">" .  $story['title'] . ', by ' . getUsername($story["id_user"]) . '</a>' . '</h1>';
             echo '<p>' .  $story['brief_intro'] . '</p>';
             $_SESSION["id_story"] = $id_story;
+            echo '<div class="votes">';
             if($_SESSION["logged_in"]) {
                 if(hasUpvotedStory($_SESSION["id_user"], $id_story))
                     echo '<a href="action_upvote_story.php">⬆</a>';
@@ -128,6 +131,9 @@
                 echo $story['plus'];
                 echo '<a href="login.php">⇩</a>';
             }
+            $karma += $story["plus"];
+            echo '</div>';
+            echo '</div>';
         } 
          ?>
          
