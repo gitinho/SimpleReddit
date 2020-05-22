@@ -13,8 +13,9 @@ CREATE TABLE stories (
     plus INTEGER NOT NULL
 );
 CREATE TABLE comments (
-    id_comment INTEGER,
+    id_parent_comment INTEGER,
     id_story INTEGER,
+    id_comment INTEGER,
     id_user INTEGER REFERENCES users NOT NULL,
     published DATE NOT NULL,
     comment_text VARCHAR NOT NULL,
@@ -81,6 +82,7 @@ INSERT INTO stories VALUES(
 );
 
 INSERT INTO comments VALUES(
+    0,
     1,
     1,
     2,
@@ -89,16 +91,18 @@ INSERT INTO comments VALUES(
     1
 );
 INSERT INTO comments VALUES(
-    2,
     1,
+    1,
+    2,
     1,
     '2007-01-01 12:38:34',
     'Non iaculis nisl dui id augue..',
     1
 );
 INSERT INTO comments VALUES(
-    3,
+    2,
     1,
+    3,
     2,
     '2007-01-01 13:12:37',
     'In ultrices diam elit. Aenean nunc eros, dapibus at nisl non, ultrices facilisis purus.',
@@ -106,8 +110,9 @@ INSERT INTO comments VALUES(
 );
 
 INSERT INTO comments VALUES(
-    1,
+    0,
     2,
+    1,
     1,
     '2007-04-05 17:34:11',
     'Aliquam eget mauris massa. Vestibulum nisi velit, sollicitudin eu odio quis, fermentum lobortis libero.',

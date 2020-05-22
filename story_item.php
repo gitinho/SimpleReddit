@@ -36,12 +36,6 @@
         /*
         echo'<h1>'. $id_story .'</h1>'; 
         */
-
-        $stmt = $db->prepare("SELECT *
-                               FROM comments 
-                               WHERE id_story = $id_story");
-        $stmt->execute();
-        $comments = $stmt->fetchAll();
         ?>
         </div>
         <div class = "box content">
@@ -76,52 +70,13 @@
          </div>
          <div class = "box footer">
          <?php
-         foreach($comments as $comment){
-            ?>
-            <div id = "comment">
-            <?php
-           echo '<article class="comment">';
-             echo '<span><a href="user_page.php?id_user=' . $comment['id_user'] . '">' . getUsername($comment['id_user']) . '</a></span>';
-             echo '<span>' . $comment['published'] . '</span>';
-			 
-			 if($_SESSION["logged_in"]) {
-
-				echo '<div class="votes"><a href="action_upvote.php';
-				echo '?id_comment=' . $comment['id_comment'];
-				echo '&id_story=' . $comment['id_story'];
-				echo '&plus=' . $comment['plus'];
-				
-				if (hasUpvoted($_SESSION["id_user"], $comment['id_comment'], $comment['id_story']))
-					echo '">⬆</a>';
-				else
-					echo '">⇧</a>';
-	
-				echo $comment['plus'];
-	
-				echo '<a href="action_downvote.php';
-				echo '?id_comment=' . $comment['id_comment'];
-				echo '&id_story=' . $comment['id_story'];
-				echo '&plus=' . $comment['plus'];
-	
-				if (hasDownvoted($_SESSION["id_user"], $comment['id_comment'], $comment['id_story']))
-					echo '">⬇</a></div>';
-				else
-					echo '">⇩</a></div>';
-			 } else {
-				echo '<div class="votes"><a href="login.php';
-				echo '">⇧</a>';
-				echo $comment['plus'];
-				echo '<a href="login.php';
-				echo '">⇩</a></div>';
-			 }
-
-             echo '<p>' . $comment['comment_text'] . '</p>';
-           echo '</article>';
-           $_SESSION["id_comment"] = $comment['id_comment'];
-           ?>
-           </div>
-           <?php
-         }?>
+         $stmt = $db->prepare("SELECT *
+                FROM comments 
+                WHERE id_story = $id_story AND id_parent_comment = 0");
+         $stmt->execute();
+         $comments = $stmt->fetchAll();
+         print_comments($db, $id_story, $comments);
+         ?>
          
          </div>
          
@@ -138,6 +93,7 @@
                 <textarea name="text"></textarea>
             </label>
             <input type="hidden" name="id" value="<?=$id_story?>">
+            <input type="hidden" name="id_parent" value="0">
             <input type="submit" value="Reply">
             <?php } else {
                 ?>
